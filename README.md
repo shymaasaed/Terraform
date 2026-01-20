@@ -1,12 +1,12 @@
-
-# Terraform S3 Backend with DynamoDB State Lock
-
+# Terraform project
+## 1-Terraform S3 Backend with DynamoDB State Lock
+This guide provides step-by-step instructions to set up an S3 backend with DynamoDB state locking for Terraform. This setup ensures that your Terraform state is stored securely and prevents concurrent modifications .
 ## Prerequisites
 - AWS Account
 - AWS CLI installed
 - Terraform installed
 
-## Step 1: AWS CLI Configuration
+## AWS CLI Configuration
 
 ```bash
 aws configure
@@ -16,7 +16,7 @@ aws configure
 # Enter default output format (json)
 ```
 
-## Step 2: Create IAM User for Terraform
+## Create IAM User for Terraform
 
 ```bash
 # Create user
@@ -26,14 +26,14 @@ aws iam create-user --user-name <terraform-user-name>
 aws iam create-access-key --user-name <terraform-user-name>
 ```
 
-## Step 3: Attach Policy to User
+## Attach Policy to User
 
 ```bash
 aws iam attach-user-policy --user-name <terraform-user-name> \
     --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
 ```
 
-## Step 4: Create S3 Bucket for State
+## Create S3 Bucket for State
 
 ```bash
 aws s3api create-bucket --bucket <s3-bucket-name> --region <aws-region>
@@ -41,7 +41,7 @@ aws s3api put-bucket-versioning --bucket <s3-bucket-name> \
     --versioning-configuration Status=Enabled
 ```
 
-## Step 5: Create DynamoDB Table for Locking
+## Create DynamoDB Table for Locking
 
 ```bash
 aws dynamodb create-table --table-name <dynamodb-table-name> \
@@ -50,7 +50,7 @@ aws dynamodb create-table --table-name <dynamodb-table-name> \
     --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
 ```
 
-## Step 6: Configure Terraform Backend
+## Configure Terraform Backend
 
 Create `backend.tf`:
 
@@ -67,14 +67,14 @@ terraform {
 }
 ```
 
-## Step 7: Initialize Terraform
+## Initialize Terraform
 
 ```bash
 terraform init
 terraform plan
 terraform apply
 ```
-# create High Available infra using Terraform custom  Modules 
+# 2- Create High Available infra using Terraform custom  Modules 
  to create a vpc , 1 public subnet , 2 private subnets 
  1 internet gateway , 1 nat gateway , route tables ,ec2 instance in public subnet to work as bastion host with pem key 
  Group Users and Attach Group Policy with limitation to Read & write on [Ec2,Rds,s3,EKS,dynmo]
@@ -145,21 +145,17 @@ ssh -i path/key.pem ec2-user@public-ip
 
 
 ## AWS Gallery
+
 # Resource Map of VPC
 ![Resource Map of VPC](infra/images/resourcemap.png)
-
 # Developers Setup
 ![Developers Setup](infra/images/develpers.png)
-
 # IAM Policies and Roles
 ![IAM Policies](infra/images/polcies.png)
-
 # Bastion Host SSH Connection
 ![Bastion SSH connection](infra/images/bastion.png)
-
 # Terraform Output
 ![Output Screenshot](infra/images/output.png)
-
 # Infrastructure Graph
 ![infra grahp](infra/images/graph.svg) 
 
