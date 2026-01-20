@@ -1,0 +1,18 @@
+# Terraform
+infra/.terraform/
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+
+# tfvars contains secrets
+*.tfvars
+*.tfvars.json
+
+# Keys
+*.pem
+*.ppk
+
+# Misc
+crash.log
+crash.*.log
