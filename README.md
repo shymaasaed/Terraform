@@ -75,10 +75,11 @@ terraform plan
 terraform apply
 ```
 # create High Available infra using Terraform custom  Modules 
-## to create a vpc , 1 public subnet , 2 private subnets 
-## 1 internet gateway , 1 nat gateway , route tables ,ec2 instance in public subnet to work as bastion host with pem key 
-## Group Users and Attach Group Policy 
+ to create a vpc , 1 public subnet , 2 private subnets 
+ 1 internet gateway , 1 nat gateway , route tables ,ec2 instance in public subnet to work as bastion host with pem key 
+ Group Users and Attach Group Policy with limitation to Read & write on [Ec2,Rds,s3,EKS,dynmo]
 Root directory tree
+```
 .
 ├── README.md
 ├── backend.tf
@@ -122,6 +123,7 @@ Root directory tree
     └── variable.tf
 
 9 directories, 33 files
+```
 
 ## Step 8: Initialize AWS infra 
 
@@ -143,12 +145,24 @@ ssh -i path/key.pem ec2-user@public-ip
 
 
 ## AWS Gallery
+# Resource Map of VPC
 ![Resource Map of VPC](infra/images/resourcemap.png)
+
+# Developers Setup
 ![Developers Setup](infra/images/develpers.png)
+
+# IAM Policies and Roles
 ![IAM Policies](infra/images/polcies.png)
+
+# Bastion Host SSH Connection
 ![Bastion SSH connection](infra/images/bastion.png)
+
+# Terraform Output
 ![Output Screenshot](infra/images/output.png)
+
+# Infrastructure Graph
 ![infra grahp](infra/images/graph.svg) 
+
 
 
 
