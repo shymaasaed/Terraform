@@ -125,7 +125,7 @@ Root directory tree
 9 directories, 33 files
 ```
 
-## Step 8: Initialize AWS infra 
+## Initialize AWS infra 
 
 ```bash
 terraform init
